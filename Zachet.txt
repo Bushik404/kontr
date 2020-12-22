@@ -1,0 +1,45 @@
+
+#include <iostream>
+
+using namespace std;
+class Cheburek{
+    public: 
+    int vkus;
+    int kachestvo;
+    int sum(){
+        return (vkus+kachestvo)/2;
+    
+    }
+    void create(){
+        cout<<"Vkus= ";
+        cin>>vkus;
+        cout<<"kachestvo= ";
+        cin>>kachestvo;
+    }
+  void vivod(){
+    cout<<"ocenO4ka= ";
+    cout<<sum()<<endl;
+  }  
+    void maxim(){
+        if(vkus>kachestvo){
+            cout<<"vkus kruche "<<vkus;
+        
+        }
+        else if(kachestvo==vkus){
+            cout<<"Ideal'niy Cheburek";
+        }
+        else{
+            cout<<"kachestvo kruche "<<kachestvo;
+        }
+        
+    }
+    
+};
+int main()
+{
+    Cheburek Cheese;
+    Cheese.create();
+    Cheese.vivod();
+    Cheese.maxim();
+    return 0;
+}
