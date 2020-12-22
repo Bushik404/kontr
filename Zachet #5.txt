@@ -1,0 +1,139 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+    class book{
+        public:
+        string name;
+        string author;
+        int date;
+        void operator =(book tmp){
+            name=tmp.name; 
+            date=tmp.date;
+            author=tmp.author;
+            
+        };
+        void show(){
+            cout<<name<<" "<<author<<" "<<date<<endl;
+        };
+        istream& operator >>(istream &in){
+        in >>name>>author>>date;
+        return in;
+        };
+        bool equal(book tmp){
+            if(tmp.name==this->name&&tmp.date==this->date&&tmp.author==this->author){
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+    };
+    class library{
+        public:
+        int size;
+        vector <book> books;
+        void create(book tmp){
+            books.push_back(tmp);
+        
+        };
+        book find_name(string tname){
+            book tmp;
+            for(int i=0;i<books.size();++i){
+            if(books[i].name==tname){
+                tmp=books[i];
+            }    
+            }
+            return tmp;
+            
+        };
+        book find_author(string tauthor){
+            book tmp;
+            for(int i=0;i<books.size();++i){
+            if(books[i].author==tauthor){
+                tmp=books[i];
+            }    
+            }
+            return tmp;
+            
+        };
+        book find_date(int tdate){
+            book tmp;
+            for(int i=0;i<books.size();++i){
+            if(books[i].date==tdate){
+                tmp=books[i];
+            }    
+            }
+            return tmp;
+        };
+        void del(book tmp){
+          for(int i=0;i<books.size();++i){
+              if(books[i].equal(tmp)){
+                  books.erase(books.begin()+i);
+              }
+          }
+      }  
+    
+    };
+    
+int main()
+{
+  library Library;
+  book Book;
+  int com;
+  cin>>com;
+  while(com!=4){
+      
+  switch(com){
+            case 1:
+            {
+                book tmp;
+                cin>>tmp.name>>tmp.author>>tmp.date;
+                Library.create(tmp);
+                break;
+            }
+            case 2:
+            {
+                int f;
+                cin>>f;
+            }
+            switch(f){
+                case 1:
+                {
+                    string tname;
+                    cin>>tname;
+                    Book=Library.find_name(tname);
+                    break;
+                }
+                case 2:
+                {
+                    string tauthor;
+                    cin>>tauthor;
+                    Book=Library.find_author(tauthor);
+                    break;
+                }
+                case 3:
+                {
+                    int tdate;
+                    cin>>tdate;
+                    Book=Library.find_date(tdate);
+                    break;
+                }
+                default:
+                {
+                    cout<<"error"<<endl;
+                    break;
+                }
+            };
+        break;
+        case 3:
+        cin>>Book;
+        Library.del(Book);
+        break;
+        default:
+        cout<<"error"<<endl;
+        break;
+        };
+  }
+    return 0;
+}
